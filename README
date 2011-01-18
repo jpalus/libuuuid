@@ -1,0 +1,20 @@
+libuuuid - Unified UUID Library
+===============================
+
+libuuuid aims at providing small portable UUID library. It does not
+implement standard by itself, but instead utilizes most common
+implementation on running platform and exposes consistent API.
+Motivations for writing such library were both incompatibilities between
+native APIs and problems with ossp-uuid[1] implementation to coexist with
+current libraries.
+
+[1] http://www.ossp.org/pkg/lib/uuid/
+
+Supported platforms
+===================
+
+ * Linux - requires libuuid from util-linux-ng
+
+ * FreeBSD - uses implementation from libc
+
+ * Windows - runs on Windows 2000 and higher
