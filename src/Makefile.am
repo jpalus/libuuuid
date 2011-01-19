@@ -13,8 +13,7 @@ if FBSD
 libuuuid_la_SOURCES += uuuid-fbsd.c
 endif
 
-libuuuid_la_CPPFLAGS = -Wall -Werror -Wmissing-declarations \
-		       $(UUID_CFLAGS)
+libuuuid_la_CPPFLAGS = $(UUID_CFLAGS)
 
 libuuuid_la_LDFLAGS = -no-undefined
 libuuuid_la_LIBADD = $(UUID_LIBS)

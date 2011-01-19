@@ -34,12 +34,12 @@ static void _uuuid_create(struct uuuid_t** uuuid, int* status, int nil)
 
 void uuuid_create(struct uuuid_t** uuuid, int* status)
 {
-	return _uuuid_create(uuuid, status, 0);
+	_uuuid_create(uuuid, status, 0);
 }
 
 void uuuid_create_nil(struct uuuid_t** uuuid, int* status)
 {
-	return _uuuid_create(uuuid, status, 1);
+	_uuuid_create(uuuid, status, 1);
 }
 
 int uuuid_is_nil(struct uuuid_t* uuuid, int* status)

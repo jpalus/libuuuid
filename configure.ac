@@ -17,6 +17,11 @@ case $host in
 	PKG_CHECK_MODULES([UUID],[uuid])
 	uuid_impl=linux
 	;;
+        *solaris*)
+        AC_CHECK_HEADER([uuid/uuid.h],[],[AC_MSG_ERROR([No <uuid/uuid.h> header found])])
+        AC_CHECK_LIB([uuid],[uuid_generate],[],[AC_MSG_ERROR([No suitable -luuid found])])
+        uuid_impl=linux
+	;;
 	*freebsd*)
 	uuid_impl=fbsd
 	;;

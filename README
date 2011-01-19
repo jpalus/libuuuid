@@ -18,3 +18,5 @@ Supported platforms
  * FreeBSD - uses implementation from libc
 
  * Windows - runs on Windows 2000 and higher
+
+ * Solaris - similarly to Linux through libuuid
