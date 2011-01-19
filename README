@@ -1,12 +1,12 @@
 libuuuid - Unified UUID Library
 ===============================
 
-libuuuid aims at providing small portable UUID library. It does not
-implement standard by itself, but instead utilizes most common
-implementation on running platform and exposes consistent API.
-Motivations for writing such library were both incompatibilities between
-native APIs and problems with ossp-uuid[1] implementation to coexist with
-current libraries.
+libuuuid aims at providing small, portable and multi-platform UUID
+library. It does not implement standard by itself, but instead utilizes
+most common implementation on running platform and exposes consistent
+API. Motivations for writing such library were both incompatibilities
+between native APIs and problems with ossp-uuid[1] implementation to
+coexist with current libraries.
 
 [1] http://www.ossp.org/pkg/lib/uuid/
 
