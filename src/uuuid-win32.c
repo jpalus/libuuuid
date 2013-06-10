@@ -83,14 +83,28 @@ int uuuid_compare(struct uuuid_t* u1, struct uuuid_t* u2, int* status)
 	return ret;
 }
 
-void uuuid_to_string(struct uuuid_t* uuuid, char** out, int* status)
+void uuuid_to_string(struct uuuid_t* uuuid, char *str, size_t buffersize, int* status)
 {
 	RPC_STATUS st;
 
-	st = UuidToString(&uuuid->uuid, (unsigned char**) out);
+	RPC_CSTR rpcStringBuffer;
+	st = UuidToStringA(&uuuid->uuid, &rpcStringBuffer);
 
 	if (st == RPC_S_OK)
-		*status = UUUID_OK;
+	{
+		// we could make the assumption that the string is always in the 
+		// expected size (36) if the call to UuidToStringA is correctly completed
+		size_t strlength = strlen((const char *)rpcStringBuffer) + 1;
+		if (buffersize >= strlength)
+		{
+			memcpy(str, rpcStringBuffer, strlength);
+			*status = UUUID_OK;
+		}
+		else
+			*status = UUUID_ERR;
+
+		RpcStringFreeA(&rpcStringBuffer);
+	}
 	else
 		*status = UUUID_ERR;
 }
@@ -102,7 +116,7 @@ void uuuid_from_string(const char* in, struct uuuid_t** uuuid, int* status)
 
 	u = uuuid_new();
 
-	st = UuidFromString((unsigned char*) in, &u->uuid);
+	st = UuidFromStringA((unsigned char*) in, &u->uuid);
 
 	if (st != RPC_S_OK) {
 		uuuid_free(u);

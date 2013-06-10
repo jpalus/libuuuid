@@ -54,11 +54,15 @@ int uuuid_compare(struct uuuid_t* u1, struct uuuid_t* u2, int* status)
 	return uuid_compare(u1->uuid, u2->uuid);
 }
 
-void uuuid_to_string(struct uuuid_t* uuuid, char** out, int* status)
+void uuuid_to_string(struct uuuid_t* uuuid, char *str, size_t buffersize, int* status)
 {
-	*out = malloc(sizeof(char) * 37);
-	uuid_unparse(uuuid->uuid, *out);
-	*status = UUUID_OK;
+	if (buffersize >= sizeof(char) * 37)
+	{
+		uuid_unparse(uuuid->uuid, str);
+		*status = UUUID_OK;
+	}
+	else
+		*status == UUUID_ERR;
 }
 
 void uuuid_from_string(const char* in, struct uuuid_t** uuuid, int* status)
