@@ -7,7 +7,6 @@ AM_INIT_AUTOMAKE([foreign])
 LT_INIT
 
 AC_PROG_CC
-AC_HEADER_STDC
 
 case $host in
 	*mingw*)
